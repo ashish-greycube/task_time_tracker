@@ -14,13 +14,14 @@ def create_todo_based_on_repair_stage(self,method):
 				todo.reference_type='Quotation'
 				todo.reference_name=self.name
 				todo.repair_status_offerte_cf=self.repair_status
-				todo.save(ignore_permission=True)
+				todo.save(ignore_permissions=True)
 				msg =+ _('To Do {} is created'.format(get_link_to_form('ToDo',todo.name)))
 			if msg:
 				frappe.msgprint(msg, alert=1)				
 
 	elif method=='on_update_after_submit':
 		old_repair_status = frappe.db.get_value('Quotation', self.name, 'repair_status')
+		print('old_repair_status',old_repair_status,'self.repair_status',self.repair_status)
 		if self.repair_status!=old_repair_status:
 			repair_status_doc=frappe.get_doc('Repair Status Offerte', self.repair_status)
 			for task in repair_status_doc.repair_order_stage_task:
@@ -30,7 +31,7 @@ def create_todo_based_on_repair_stage(self,method):
 				todo.reference_type='Quotation'
 				todo.reference_name=self.name
 				todo.repair_status_offerte_cf=self.repair_status
-				todo.save(ignore_permission=True)			
+				todo.save(ignore_permissions=True)			
 				msg =+ _('To Do {} is created'.format(get_link_to_form('ToDo',todo.name)))
 			if msg:
 				frappe.msgprint(msg, alert=1)
