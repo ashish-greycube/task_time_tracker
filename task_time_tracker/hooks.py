@@ -98,7 +98,7 @@ doctype_js = {"ToDo" : "public/js/todo.js"}
 doc_events = {
 	"Quotation": {
 		"on_submit": "task_time_tracker.api.create_todo_based_on_repair_stage",
-		"on_update_after_submit": "task_time_tracker.api.create_todo_based_on_repair_stage",
+		"on_update": "task_time_tracker.api.create_todo_based_on_repair_stage",
 	}
 }
 
