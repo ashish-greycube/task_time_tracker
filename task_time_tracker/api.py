@@ -4,6 +4,7 @@ from frappe import throw, _
 from frappe.utils import get_link_to_form
 
 def create_todo_based_on_repair_stage(self,method):
+	msg=''
 	if method=='on_submit':
 		if self.repair_status:
 			repair_status_doc=frappe.get_doc('Repair Status Offerte', self.repair_status)
@@ -15,7 +16,7 @@ def create_todo_based_on_repair_stage(self,method):
 				todo.reference_name=self.name
 				todo.repair_status_offerte_cf=self.repair_status
 				todo.save(ignore_permissions=True)
-				msg =+ _('To Do {} is created'.format(get_link_to_form('ToDo',todo.name)))
+				msg += _('To Do {} is created'.format(get_link_to_form('ToDo',todo.name)))
 			if msg:
 				frappe.msgprint(msg, alert=1)				
 
@@ -32,6 +33,6 @@ def create_todo_based_on_repair_stage(self,method):
 				todo.reference_name=self.name
 				todo.repair_status_offerte_cf=self.repair_status
 				todo.save(ignore_permissions=True)			
-				msg =+ _('To Do {} is created'.format(get_link_to_form('ToDo',todo.name)))
+				msg += _('To Do {} is created'.format(get_link_to_form('ToDo',todo.name)))
 			if msg:
 				frappe.msgprint(msg, alert=1)
