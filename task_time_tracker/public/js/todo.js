@@ -12,9 +12,14 @@ frappe.ui.form.on("ToDo", {
 		if(frm.is_new()==undefined) {
 			frm.add_custom_button(__('Start'), function() {
 				frm.set_value('task_start__date_time_cf', frappe.datetime.now_datetime())
+				frm.set_value('status', 'Started')
+				frm.save()
+
 			},__('Timer'));
 			frm.add_custom_button(__('Stop'), function() {
 				frm.set_value('task_end__date_time_cf', frappe.datetime.now_datetime())
+				frm.set_value('status', 'Closed')
+				frm.save()
 			},__('Timer'));		
 			$('[data-label="Timer"] > button').removeClass(' btn-default')
 			$('[data-label="Timer"] > button').addClass('btn-warning')
