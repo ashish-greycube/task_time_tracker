@@ -20,7 +20,7 @@ def create_todo_based_on_repair_stage(self,method):
 			if msg:
 				frappe.msgprint(msg, alert=1)				
 
-	elif method=='on_update' and self.docstatus==1:
+	elif method=='before_update_after_submit':
 		old_repair_status = frappe.db.get_value('Quotation', self.name, 'repair_status')
 		print('old_repair_status',old_repair_status,'self.repair_status',self.repair_status)
 		x='old_repair_status'+ old_repair_status + 'self.repair_status'+ self.repair_status
