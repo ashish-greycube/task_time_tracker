@@ -31,7 +31,9 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"ToDo" : "public/js/todo.js"}
+doctype_js = {"ToDo" : "public/js/todo.js",
+"Quotation" : "public/js/quotation.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -97,8 +99,9 @@ doctype_js = {"ToDo" : "public/js/todo.js"}
 
 doc_events = {
 	"Quotation": {
-		"on_submit": "task_time_tracker.api.create_todo_based_on_repair_stage",
-		"before_update_after_submit": "task_time_tracker.api.create_todo_based_on_repair_stage",
+		"after_insert": "task_time_tracker.api.calculate_creation_time_spent_on_quotation",
+		"on_update": "task_time_tracker.api.create_todo_based_on_repair_stage",
+		# "before_update_after_submit": "task_time_tracker.api.create_todo_based_on_repair_stage",
 	}
 }
 
