@@ -30,9 +30,10 @@ def create_todo_based_on_repair_stage(self,method):
 					msg += _('To Do {} is created <br>'.format(get_link_to_form('ToDo',todo.name)))
 					if first_todo==False:
 						first_todo_name=todo.name
+						first_do_desc=description
 						first_todo=True
 			if first_todo==True:
-				frappe.msgprint(get_link_to_form("ToDO",first_todo_name,label="ToDO Link"))
+				frappe.msgprint(get_link_to_form("ToDO",first_todo_name,label=first_do_desc))
 			if msg:
 				frappe.msgprint(msg, alert=1)				
 				# frappe.local.response["type"] = "redirect"
